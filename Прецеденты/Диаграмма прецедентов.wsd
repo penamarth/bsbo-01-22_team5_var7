@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+actor "Руководитель" as Manager
+actor "Исполнитель" as Worker
+actor "IT-специалист" as IT
+
+rectangle "Система учета рабочего времени" {
+    usecase "Создание задания" as UC1
+    usecase "Начало работы над заданием" as UC2
+    usecase "Остановка рабочего времени" as UC3
+    usecase "Контроль прогресса выполнения задания" as UC4
+    usecase "Завершение задания" as UC5
+    usecase "Техническая поддержка" as UC6
+}
+
+Manager --> UC1 : Создать задание
+Worker --> UC2 : Начать работу
+Worker --> UC3 : Остановить учет времени
+Manager --> UC4 : Проверить прогресс
+Worker --> UC5 : Завершить задание
+IT --> UC6 : Поддерживать систему
+
+actor "Система управления проектами" as PMS
+actor "HR-система" as HR
+actor "Бухгалтерская система" as Accounting
+
+UC1 <-- PMS : Синхронизировать задачи и проекты
+UC4 <-- HR : Передавать данные о занятости и отпусках
+UC5 --> Accounting : Передача данных для расчета зарплаты
+
+@enduml
