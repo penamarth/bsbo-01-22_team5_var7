@@ -1,0 +1,22 @@
+```plantuml
+@startuml
+actor "Руководитель" as Manager
+
+Manager -> "Система задач" : createTask(description, assignee_id)
+activate "Система задач"
+"Система задач" -> "Задача" : create(description, assignee_id)
+activate "Задача"
+"Задача" -> "Система задач" : notifyCreationSuccess(taskID)
+deactivate "Задача"
+
+"Система задач" -> "Система уведомлений" : notifyAssignee(assignee_id, taskID)
+activate "Система уведомлений"
+"Система уведомлений" -> "Исполнитель" : sendNotification(assignee_id, taskID)
+deactivate "Система уведомлений"
+
+"Система задач" <- "Задача" : taskCreated
+"Система задач" -> Manager : notifyTaskCreated(taskID)
+deactivate "Система задач"
+
+@enduml
+```
