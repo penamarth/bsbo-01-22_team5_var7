@@ -2,7 +2,8 @@
 left to right direction
 actor "Руководитель" as Manager
 actor "Исполнитель" as Worker
-actor "IT-специалист" as IT
+actor "Ситемный администратор" as SystemsAdministrator
+actor "HR" as HR
 
 rectangle "Система учета рабочего времени" {
     usecase "Создание задания" as UC1
@@ -18,14 +19,14 @@ Manager --> UC1 : Создать задание
 Worker --> UC2 : Просмотреть задания
 Manager --> UC3 : Проверить прогресс
 Worker --> UC4 : Выполнять работу,\n начать перерыв,\n завершить перерыв,\n завершить работу над заданием
-IT --> UC5 : Поддерживать систему
+SystemsAdministrator --> UC5 : Поддерживать систему
 
 actor "Система управления проектами" as PMS
-actor "HR-система" as HR
 actor "Бухгалтерская система" as Accounting
+actor "HR-система" as HR
 
-UC1 <-- PMS : Синхронизировать задачи и проекты
-UC3 <-- HR : Передавать данные о занятости и отпусках
 UC4 --> Accounting : Передача данных для расчета зарплаты
 UC6 --> PMS
+UC3 --> HR : Передавать данные о занятости и отпусках
+
 @enduml
