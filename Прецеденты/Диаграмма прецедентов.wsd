@@ -1,7 +1,7 @@
 @startuml
 left to right direction
 actor "Руководитель" as Manager
-actor "Исполнитель" as Worker
+actor "Исполнитель задачи" as Worker
 actor "Ситемный администратор" as SystemsAdministrator
 actor "HR" as HR
 
@@ -11,8 +11,7 @@ rectangle "Система учета рабочего времени" {
     usecase "Контроль прогресса выполнения задания" as UC3
     usecase "Выполнение задания" as UC4
     usecase "Техническая поддержка" as UC5
-    usecase "Сбор статистики" as UC6
-    
+    usecase "Сбор статистики" as UC6   
 }
 Manager --> UC6: Просматривать статистику
 Manager --> UC1 : Создать задание
@@ -26,7 +25,7 @@ actor "Бухгалтерская система" as Accounting
 actor "HR-система" as HR
 
 UC4 --> Accounting : Передача данных для расчета зарплаты
-UC6 --> PMS
+UC6 --> PMS : Передача отчетности и статистики
 UC3 --> HR : Передавать данные о занятости и отпусках
 
 @enduml
