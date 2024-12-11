@@ -1,4 +1,3 @@
-```plantuml
 @startuml
 ' Интерфейс для проверки доступных действий для роли
 interface IRole {
@@ -91,4 +90,3 @@ EmployeeRole --> CompleteTaskAction
 
 SystemsAdministatorRole --> TechSupportAction
 @enduml
-```
