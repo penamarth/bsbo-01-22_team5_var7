@@ -1,0 +1,24 @@
+@startuml
+actor "Руководитель" as Manager
+participant "Система бухгалтерии" as MoneyManagement
+participant "Система управления\nпроектами" as ProjectManagementSystem
+participant "HR-система" as HRSystem
+
+Manager -> MoneyManagement: RequestForStat(period, filters)
+activate MoneyManagement
+
+MoneyManagement -> ProjectManagementSystem: getProjectData(filters)
+activate ProjectManagementSystem
+MoneyManagement <- ProjectManagementSystem: projectData
+deactivate ProjectManagementSystem
+
+MoneyManagement -> HRSystem: getEmployeeData(filters)
+activate HRSystem
+MoneyManagement <- HRSystem: employeeData
+deactivate HRSystem
+
+MoneyManagement -> MoneyManagement: compilingStatistics(projectData, payrollData, employeeData)
+MoneyManagement -> Manager: DataOfStat(report)
+deactivate MoneyManagement
+
+@enduml
